@@ -1,0 +1,30 @@
+package intro;
+
+#Automating the below site using Selenium + Java
+#https://www.rahulshettyacademy.com/AutomationPractice/
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class selenium1 {
+
+	public static void main(String[] args) {
+		
+		 WebDriver driver = new FirefoxDriver();
+         
+         driver.navigate().to("https://www.rahulshettyacademy.com/AutomationPractice/");
+
+         String TitleOfPage = driver.getTitle();
+
+         System.out.println("Title of Current page is : "+TitleOfPage);
+
+         driver.findElement(By.id("checkBoxOption1")).click();
+         driver.findElement(By.name("radioButton")).click();
+         
+		
+		
+		
+	}
+
+}

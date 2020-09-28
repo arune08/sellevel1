@@ -11,16 +11,17 @@ public class selenium1 {
 
 	public static void main(String[] args) {
 		
+		System.setProperty("webdriver.gecko.driver","C:\Users\Downloads\geckodriver.exe");
 		 WebDriver driver = new FirefoxDriver();
          
-         driver.navigate().to("https://www.rahulshettyacademy.com/AutomationPractice/");
+        	 driver.navigate().to("https://www.rahulshettyacademy.com/AutomationPractice/");
 
-         String TitleOfPage = driver.getTitle();
+         	String TitleOfPage = driver.getTitle();
 
-         System.out.println("Title of Current page is : "+TitleOfPage);
+        	 System.out.println("Title of Current page is : "+TitleOfPage);
 
-         driver.findElement(By.id("checkBoxOption1")).click();
-         driver.findElement(By.name("radioButton")).click();
+        	 driver.findElement(By.id("checkBoxOption1")).click();
+        	 driver.findElement(By.name("radioButton")).click();
          
 		
 		

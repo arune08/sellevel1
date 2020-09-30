@@ -1,25 +1,60 @@
-package intro;
-
-#Automating the below site using Selenium + Java
-#https://www.rahulshettyacademy.com/AutomationPractice/
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Testing {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		System.out.println("testing automation");
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\Downloads\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\batman\\Downloads\\chromedriver.exe");
 		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		
 		driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
+		String parent =driver.getWindowHandle();
 		driver.findElement(By.id("checkBoxOption1")).click();
-	   	driver.findElement(By.name("radioButton")).click();
-			
+		driver.findElement(By.id("checkBoxOption2")).click();
+		driver.findElement(By.id("checkBoxOption3")).click();
 		
-		
+	   	driver.findElement(By.name("radioButton")).click(); 									   //Radio button 1 by name	
+	   	driver.findElement(By.xpath("/html/body/div[1]/div[1]/fieldset/label[2]/input")).click(); //Radio button 2 by Xpath
+	   	driver.findElement(By.xpath("/html/body/div[1]/div[1]/fieldset/label[3]/input")).click(); //Radio button 3 by Xpath	
+	   	driver.findElement(By.id("autocomplete")).sendKeys("India");
+	   	driver.findElement(By.xpath("/html/body/div[1]/div[3]/fieldset/select/option[2]")).click();
+	   	driver.findElement(By.xpath("/html/body/div[1]/div[3]/fieldset/select/option[3]")).click();
+	   	driver.findElement(By.xpath("/html/body/div[1]/div[3]/fieldset/select/option[4]")).click();
+	   	
+	   	driver.findElement(By.id("name")).sendKeys("Arun");
+	   	driver.findElement(By.id("alertbtn")).click();
+	   	driver.switchTo().alert().accept();
+	   	driver.findElement(By.id("confirmbtn")).click();
+	   	driver.switchTo().alert().accept();
+	   	
+	   	
+	   	driver.findElement(By.id("openwindow")).click();
+	    List<String> windows = new ArrayList<>(driver.getWindowHandles());//Returning Set
+	    for (String s: windows) { System.out.println("window: " + s);} // Let's see names
+	    String parentWindow = windows.get(0); //In my case, I have two windows.
+	    String childWindow = windows.get(1); 
+
+	    driver.switchTo().window(childWindow).close();
+	   	driver.switchTo().window(parentWindow);
+	   	driver.findElement(By.id("opentab")).click();
+	   	
+	   	ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs2.get(1));
+	    driver.close();
+	    driver.switchTo().window(tabs2.get(0));
+	   	
+	        
+	   	
 	}
 
 }
+
